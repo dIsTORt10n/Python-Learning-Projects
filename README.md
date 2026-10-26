@@ -12,15 +12,25 @@ This repository is designed to help build Python fundamentals through practical 
 Python-Learning-Projects/
 ├── README.md
 ├── apps/
+│   ├── to_do_list.py
 │   └── user_management_system.py
 ├── automation/
 │   └── web_scraper.py
+├── basics/
+│   ├── multiplication_table.py
+│   ├── number_to_words.py
+│   └── reverse_sentence.py
 ├── games/
-│   └── hangman_game.py
+│   ├── coin_game.py
+│   ├── hangman_game.py
+│   └── rock_paper_scissors.py
 ├── legacy/
-│   └── older practice scripts kept for reference
-├── other practice scripts and mini exercises
-└── .gitattributes
+│   └── README.md
+├── utilities/
+│   ├── password_generator.py
+│   └── recipe_collection.py
+├── .gitattributes
+└── original root-level practice files kept for compatibility
 ```
 
 ## Included topics
@@ -31,16 +41,16 @@ Python-Learning-Projects/
 - lists, dictionaries, and string handling
 - user management and simple data storage
 - game mechanics and interactive console apps
-- file handling and basic utility scripts
+- file handling and simple utility scripts
 - automation and web scraping examples
 
 ## Recommended learning path
 
-1. Start with simple logic and beginner exercises.
+1. Start with simple logic and beginner exercises in `basics/`.
 2. Move on to loops, conditionals, and functions.
-3. Explore mini-games such as `hangman_game.py`.
-4. Try app-style projects like `user_management_system.py`.
-5. Practice automation and scraping with `web_scraper.py`.
+3. Explore mini-games in `games/`.
+4. Try app-style projects in `apps/`.
+5. Practice automation and scraping in `automation/`.
 
 ## How to run a script
 
@@ -66,10 +76,10 @@ pip install requests beautifulsoup4 pandas selenium
 
 ## Notes
 
-- This repository is for learning and practice.
+- This repository is intended for learning and practice.
 - Not every script is production-ready.
-- Some older scripts remain as reference material while newer files are organized by purpose.
-- The structure is intentionally simple so it stays beginner-friendly.
+- Older root-level files are preserved for compatibility and reference.
+- The project is intentionally simple and beginner-friendly.
 
 ## Summary
 
