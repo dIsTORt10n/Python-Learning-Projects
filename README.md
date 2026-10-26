@@ -1,15 +1,15 @@
-# Python Basic to Advanced
+# Python Learning Projects
 
 A hands-on Python learning repository featuring beginner-friendly exercises, mini-projects, and small applications.
 
 ## Project goal
 
-This repository is designed to help develop Python fundamentals through practical examples. It includes small projects that cover logic, functions, data structures, user interaction, game design, and basic automation.
+This repository is designed to help build Python fundamentals through practical examples. It includes small programs that cover logic, functions, data structures, user interaction, game design, and basic automation.
 
 ## Repository structure
 
 ```text
-Python-Basic-to-Advanced/
+Python-Learning-Projects/
 ├── README.md
 ├── apps/
 │   └── user_management_system.py
@@ -17,36 +17,34 @@ Python-Basic-to-Advanced/
 │   └── web_scraper.py
 ├── games/
 │   └── hangman_game.py
-├── basics/
-│   └── practice scripts and small exercises
-├── utilities/
-│   └── helper and utility scripts
-└── legacy/
-    └── older script files kept for reference
+├── legacy/
+│   └── older practice scripts kept for reference
+├── other practice scripts and mini exercises
+└── .gitattributes
 ```
 
 ## Included topics
 
-- variables and input/output
+- variables and basic input/output
 - conditionals and loops
 - functions and reusable logic
 - lists, dictionaries, and string handling
 - user management and simple data storage
 - game mechanics and interactive console apps
-- file creation and basic automation
-- web scraping examples
+- file handling and basic utility scripts
+- automation and web scraping examples
 
 ## Recommended learning path
 
-1. Start with simple logic and practice scripts.
-2. Move to loops, conditionals, and functions.
-3. Explore mini-games like hangman.
-4. Try app-style projects such as the user manager.
-5. Practice automation and scraping with web-related scripts.
+1. Start with simple logic and beginner exercises.
+2. Move on to loops, conditionals, and functions.
+3. Explore mini-games such as `hangman_game.py`.
+4. Try app-style projects like `user_management_system.py`.
+5. Practice automation and scraping with `web_scraper.py`.
 
 ## How to run a script
 
-Use Python from the terminal:
+Run most Python files from the terminal:
 
 ```bash
 python filename.py
@@ -70,8 +68,8 @@ pip install requests beautifulsoup4 pandas selenium
 
 - This repository is for learning and practice.
 - Not every script is production-ready.
-- Some older scripts are kept for reference while newer files are organized by purpose.
-- The repository structure is intentionally simple so it stays beginner-friendly.
+- Some older scripts remain as reference material while newer files are organized by purpose.
+- The structure is intentionally simple so it stays beginner-friendly.
 
 ## Summary
 
