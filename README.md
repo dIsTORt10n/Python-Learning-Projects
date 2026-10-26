@@ -4,13 +4,15 @@ A hands-on Python learning repository featuring beginner-friendly exercises, min
 
 ## Project goal
 
-This repository is designed to help build Python fundamentals through practical examples. It includes small programs that cover logic, functions, data structures, user interaction, game design, and basic automation.
+This repository is designed to help you build Python fundamentals through practical examples. It includes small programs covering logic, functions, data structures, user interaction, game design, and basic automation.
 
 ## Repository structure
 
 ```text
 Python-Learning-Projects/
 ├── README.md
+├── docs/
+│   └── learning-roadmap.md
 ├── apps/
 │   ├── to_do_list.py
 │   └── user_management_system.py
@@ -33,34 +35,34 @@ Python-Learning-Projects/
 └── original root-level practice files kept for compatibility
 ```
 
-## Included topics
+## What you will learn
 
-- variables and basic input/output
+- variables and input/output
 - conditionals and loops
 - functions and reusable logic
 - lists, dictionaries, and string handling
 - user management and simple data storage
 - game mechanics and interactive console apps
-- file handling and simple utility scripts
-- automation and web scraping examples
+- file handling and utility scripting
+- automation and web scraping basics
 
 ## Recommended learning path
 
-1. Start with simple logic and beginner exercises in `basics/`.
-2. Move on to loops, conditionals, and functions.
-3. Explore mini-games in `games/`.
-4. Try app-style projects in `apps/`.
-5. Practice automation and scraping in `automation/`.
+1. Start with the simpler scripts in `basics/`.
+2. Learn loops, conditionals, and functions before moving to apps.
+3. Practice game logic in `games/`.
+4. Explore app-style programs in `apps/`.
+5. Work through automation scripts in `automation/`.
 
-## How to run a script
+## Quick start
 
-Run most Python files from the terminal:
+Run most scripts from the terminal:
 
 ```bash
 python filename.py
 ```
 
-If a script is saved as a `.pyw` file, run it with:
+If a script uses `.pyw`, run it with:
 
 ```bash
 python filename.pyw
@@ -68,7 +70,7 @@ python filename.pyw
 
 ## Dependencies
 
-Some scripts require packages such as:
+Some scripts may require extra packages:
 
 ```bash
 pip install requests beautifulsoup4 pandas selenium
@@ -79,8 +81,14 @@ pip install requests beautifulsoup4 pandas selenium
 - This repository is intended for learning and practice.
 - Not every script is production-ready.
 - Older root-level files are preserved for compatibility and reference.
-- The project is intentionally simple and beginner-friendly.
+- The project is kept intentionally simple and beginner-friendly.
+
+## Next steps
+
+For a suggested learning order and project progression, see:
+
+- `docs/learning-roadmap.md`
 
 ## Summary
 
-The purpose of this project is to help build confidence in Python by creating small but meaningful programs, one step at a time.
+The purpose of this repo is to build confidence in Python by creating small but meaningful programs, one step at a time.
