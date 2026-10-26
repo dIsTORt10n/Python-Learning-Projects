@@ -1,82 +1,71 @@
 # Python Basic to Advanced
 
-A small collection of Python practice exercises, mini-games, and beginner-to-advanced coding examples.
+A learning repository of Python mini-projects, exercises, and practice scripts designed to help build skills from beginner to intermediate level.
 
-This repository is meant to help build fundamentals in Python through a mix of:
+## Overview
 
-- basic syntax and logic
+This project contains small, practical Python programs covering:
+
+- basic logic and syntax
 - loops and conditionals
 - functions and data structures
-- object-oriented programming
-- mini projects and games
-- file handling, password logic, and web scraping examples
+- lists, dictionaries, and user input handling
+- game development
+- utility scripts
+- simple automation and web scraping
 
-## Repository overview
+## Repository structure
 
-The projects in this repository are intentionally simple and beginner-friendly, making them useful for learning by doing.
+```text
+Python-Basic-to-Advanced/
+├── README.md
+├── apps/
+│   └── user_management_system.py
+├── automation/
+│   └── web_scraper.py
+├── games/
+│   └── hangman_game.py
+├── original-files/
+│   └── legacy scripts kept for reference
+└── other practice scripts...
+```
 
-## Included examples
+## Recommended learning order
 
-| File | Topic | Description |
-| --- | --- | --- |
-| `hang_man.py` | Game | Classic hangman game with difficulty levels |
-| `rock_paper_scissors.py` | Game | Simple rock-paper-scissors game |
-| `coingame.py` | Game | Coin-flipping / guessing game |
-| `to-do_list.py` | App | Simple to-do list application |
-| `user_management.py` | App | Basic user management system |
-| `user_management_improved.py` | App | Improved, cleaner version of the user manager |
-| `web_scraper.py` | Automation | Scrapes website content using `requests` and `BeautifulSoup` |
-| `passwd_generator.py` | Utility | Password generator |
-| `encrypt.py` | Utility | Basic data encryption utility |
-| `recipe_collection.py` | Utility | Recipe storage and list management |
-| `draw_shapes.pyw` | GUI / practice | Shape drawing script |
-| `game_practice.pyw` | GUI / practice | Windows GUI-based practice project |
-| `weight.pyw` | GUI / practice | Weight-related utility |
+1. Start with smaller beginner scripts such as `multiply_function.py`, `reverse_sentence.py`, and `nums_to_words.py`.
+2. Move on to logic-based tasks and conditions.
+3. Practice with interactive games like `hangman_game.py`.
+4. Explore app-style scripts like `user_management_system.py`.
+5. Try automation scripts such as `automation/web_scraper.py`.
 
 ## How to run
 
-Most scripts are standard Python files and can be run with:
+Most scripts are run from the terminal:
 
 ```bash
 python filename.py
 ```
 
-For Windows GUI files ending in `.pyw`, run them by double-clicking or with:
+For GUI scripts that use `.pyw`:
 
 ```bash
 python filename.pyw
 ```
 
-## Requirements
+## Dependencies
 
-Some scripts may require additional Python packages, such as:
+Some scripts may require packages such as:
 
 ```bash
 pip install requests beautifulsoup4 pandas selenium
 ```
 
-If a script depends on a package not already installed in your environment, install it before running the program.
-
-## Learning path
-
-A suggested way to go through this repository:
-
-1. Start with the simpler files like `nums_to_words.py`, `reverse_sentence.py`, and `multiply_function.py`.
-2. Move on to logic and list programs.
-3. Practice with games such as `hang_man.py` and `rock_paper_scissors.py`.
-4. Explore the app-style projects like `user_management_improved.py` and `to-do_list.py`.
-5. Then try automation and scraping scripts such as `web_scraper.py`.
-
 ## Notes
 
-- This repository is designed as a learning project.
-- Some files are practice scripts rather than polished production apps.
-- A few scripts may need minor adjustments depending on your operating system or browser setup.
-
-## License
-
-This project is provided for educational purposes.
+- This repository is meant for learning and practice.
+- Some files are intentionally simple and not production-ready.
+- The original filenames remain in the repo for compatibility, while the cleaner named versions are organized under `games/`, `apps/`, and `automation/`.
 
 ## Project goal
 
-The purpose of this repo is to practice Python fundamentals and build confidence by creating small but meaningful programs.
+The goal of this repository is to practice Python by building small, useful, and beginner-friendly programs.
