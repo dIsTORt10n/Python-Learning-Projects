@@ -1,111 +1,208 @@
-import requests
-from bs4 import BeautifulSoup
-import pandas as pd
-from selenium import webdriver
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.options import Options
-import time
+"""Interactive user management system with a simple in-memory database."""
 
-# Function to scrape data using Requests and BeautifulSoup
+import os
+
+# In-memory records used to store user data.
+hashed_passwords = {}
+user_id_counter = 1
+users = {}
 
 
-def scrape_with_requests(url):
-    # Send an HTTP GET request to the specified URL
-    response = requests.get(url)
+def clear_terminal():
+    """Clear the terminal screen based on the current operating system."""
+    os.system("cls" if os.name == "nt" else "clear")
 
-    # Check if the request was successful (status code 200)
-    if response.status_code == 200:
-        return response.text  # Return the HTML content of the page
+
+class User:
+    """Represents a user record in the system."""
+
+    def __init__(self, first_name, last_name, email, password, user_id, status="inactive"):
+        self.first_name = first_name
+        self.last_name = last_name
+        self.email = email
+        self.password = password
+        self.status = status
+        self.user_id = user_id
+
+    def display_info(self):
+        """Print the user's stored information in a readable format."""
+        print(f"First Name: {self.first_name}")
+        print(f"Last Name: {self.last_name}")
+        print(f"Email: {self.email}")
+        print(f"Password: {hashed_passwords[self.user_id]}")
+        print(f"User ID: {self.user_id}")
+        print(f"Status: {self.status}")
+        print("=" * 30)
+
+
+def hash_password(password):
+    """Return a masked version of the password for display purposes."""
+    return "*" * len(password)
+
+
+def create_user():
+    """Prompt for a new user's details and create the record."""
+    global user_id_counter
+
+    while True:
+        clear_terminal()
+        first_name = input("Enter first name: ").strip().capitalize()
+        last_name = input("Enter last name: ").strip().capitalize()
+        email = input("Enter email: ").strip()
+        password = input("Enter password: ").strip()
+
+        if not password:
+            input("Error: Password cannot be empty. Please enter a valid password.")
+            continue
+
+        status = input("Enter status [active/inactive] (default = \"inactive\"): ").strip().lower()
+        if status not in ["active", "inactive", ""]:
+            print("Error: Invalid input. Please type \"active\" or \"inactive\" (or press 'Enter' for default = \"inactive\").")
+            input("Press 'Enter' to continue...")
+            continue
+
+        status = status if status else "inactive"
+        user_id = user_id_counter
+        user_id_counter += 1
+        hashed_passwords[user_id] = hash_password(password)
+        print("\nUser created successfully!")
+        break
+
+    return User(first_name, last_name, email, password, user_id, status)
+
+
+def display_all_users():
+    """Display every user currently stored in the system."""
+    if users:
+        print("\n============== All Users ==============\n")
+        for user in users.values():
+            user.display_info()
     else:
-        # Print an error message if the request failed
-        print("Failed to retrieve the webpage.")
-        return None  # Return None to indicate failure
-
-# Function to extract questions from HTML content
+        print("\n============== No users found ==============\n")
 
 
-def extract_questions(html_content):
-    # Parse the HTML content using BeautifulSoup
-    soup = BeautifulSoup(html_content, 'html.parser')
-
-    # Find all elements that match the specified class name (adjust as needed)
-    questions = soup.find_all('div', class_='question')
-
-    # Extract the text from each question element and return as a list
-    return [question.get_text() for question in questions]
-
-# Function to save data to a CSV file
+def search_user_by_id(user_id):
+    """Display a user whose ID matches the given value."""
+    user = users.get(user_id)
+    if user:
+        print("User found:\n")
+        user.display_info()
+    else:
+        print("Error: User not found.")
 
 
-def save_to_csv(data):
-    # Create a DataFrame from the list of questions
-    df = pd.DataFrame(data, columns=['Questions'])
+def search_user_by_first_name(first_name):
+    """Display all users whose first name matches the input."""
+    found = False
+    for user in users.values():
+        if user.first_name.lower() == first_name.lower():
+            user.display_info()
+            found = True
 
-    # Save the DataFrame to a CSV file
-    df.to_csv('questions.csv', index=False)
-    print("Data saved to questions.csv")  # Print a confirmation message
-
-# Function to scrape data using Selenium
+    if not found:
+        print("Error: No users found with that first name.")
 
 
-def scrape_with_selenium(url):
-    # Set up Chrome options for headless browsing (no GUI)
-    options = Options()
-    options.add_argument('--headless')  # Run Chrome in headless mode
+def search_user_by_status(status):
+    """Display all users whose status matches the input."""
+    found = False
+    for user in users.values():
+        if user.status.lower() == status.lower():
+            user.display_info()
+            found = True
 
-    # Specify the path to the ChromeDriver executable
-    # Adjust the path to your ChromeDriver
-    service = Service('/usr/bin/chromedriver')
+    if not found:
+        print("Error: No users found with that status.")
 
-    # Initialize the Chrome WebDriver with the specified options
-    driver = webdriver.Chrome(service=service, options=options)
 
-    # Open the specified URL in the browser
-    driver.get(url)
+def search_user_by_email(email):
+    """Display the user whose email matches the input."""
+    found = False
+    for user in users.values():
+        if user.email.lower() == email.lower():
+            user.display_info()
+            found = True
 
-    # Wait for a few seconds to allow the page to load (adjust as necessary)
-    time.sleep(10)
-
-    # Example: Extract questions using Selenium
-    # Find all elements that match the specified class name (adjust as needed)
-    questions = driver.find_elements(By.CLASS_NAME, 'question')
-
-    # Extract the text from each question element and return as a list
-    extracted_questions = [question.text for question in questions]
-
-    # Close the browser
-    driver.quit()
-
-    return extracted_questions  # Return the list of extracted questions
-
-# Main function to orchestrate the scraping process
+    if not found:
+        print("Error: No users found with that email.")
 
 
 def main():
-    # Prompt the user to enter a URL
-    url = input("Enter a URL: ")  # Replace with your target website
+    """Display the main menu and handle the user's actions."""
+    while True:
+        clear_terminal()
+        print("=========== Welcome To User Management ===========\n")
+        try:
+            action = int(input("\nChoose an Action:\n1. Add new user\n2. Display all users\n3. Search for a user\n4. Exit the program\n"))
+        except ValueError:
+            print("Error: Please enter a valid action number.")
+            input("Press 'Enter' to continue...")
+            continue
 
-    # First, try scraping with Requests
-    html_content = scrape_with_requests(url)
+        clear_terminal()
 
-    # If HTML content is successfully retrieved, extract questions
-    if html_content:
-        questions = extract_questions(html_content)
-    else:
-        # If Requests fails, fall back to Selenium for scraping
-        questions = scrape_with_selenium(url)
+        if action == 1:
+            user = create_user()
+            users[user.user_id] = user
+            input("\nUser added successfully! Press 'Enter' to continue...")
 
-    # Check if any questions were extracted
-    if questions:
-        print("Extracted Questions:")  # Print a header for the output
-        for question in questions:
-            print(question)  # Print each extracted question
+        elif action == 2:
+            display_all_users()
+            input("Press 'Enter' to continue...")
 
-        # Save the extracted questions to a CSV file
-        save_to_csv(questions)
+        elif action == 3:
+            while True:
+                clear_terminal()
+                try:
+                    search_action = int(input(
+                        "Search by:\n\n1. User ID\n2. First Name\n3. Status\n4. Email\n5. Go back\n6. Exit the program\n\nEnter the action number: "))
+                    if search_action <= 0 or search_action > 6:
+                        input("Error: Please enter a valid action number.")
+                        continue
+                except ValueError:
+                    input("Error: Please enter a valid number.")
+                    continue
+
+                if search_action == 1:
+                    try:
+                        user_id_to_search = int(input("Enter the user's ID: "))
+                        search_user_by_id(user_id_to_search)
+                    except ValueError:
+                        input("Error: Please enter a valid number.")
+                    input("Press 'Enter' to continue...")
+
+                elif search_action == 2:
+                    first_name_to_search = input("Enter the user's first name: ").strip()
+                    search_user_by_first_name(first_name_to_search)
+                    input("Press 'Enter' to continue...")
+
+                elif search_action == 3:
+                    status_to_search = input("Enter the user's status (active/inactive): ").strip().lower()
+                    if status_to_search not in ["active", "inactive"]:
+                        input("Error: Invalid status. Please enter either 'active' or 'inactive'.")
+                        continue
+                    search_user_by_status(status_to_search)
+                    input("Press 'Enter' to continue...")
+
+                elif search_action == 4:
+                    email_to_search = input("Enter the user's email: ").strip()
+                    search_user_by_email(email_to_search)
+                    input("Press 'Enter' to continue...")
+
+                elif search_action == 5:
+                    break
+
+                elif search_action == 6:
+                    print("\nExiting the program...")
+                    exit()
+
+        elif action == 4:
+            print("\nExiting the program...")
+            exit()
+
+        else:
+            input("Error: Please enter a valid action number.\nPress 'Enter' to continue...")
 
 
-# Run the main function when the script is executed
 if __name__ == "__main__":
     main()
